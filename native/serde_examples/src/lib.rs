@@ -55,25 +55,16 @@ fn hashmap_deserialize<'a>(env: Env<'a>, rust_type: String, hashmap_size: usize,
 #[rustler::nif(schedule = "DirtyCpu")]
 #[inline(always)]
 fn example_snowflake_arrow<'a>(env: Env<'a>) -> Term<'a> {
-    // We return a vec of vecs, laid out like columns
-    let mut return_vec = vec![];
-
-    for i in 0..100000 {
-        let mut vec: Vec<SnowflakeReturnType> = vec![
-            SnowflakeReturnType::Float64(Some(32.0)),
-            SnowflakeReturnType::Boolean(Some(false)),
-            SnowflakeReturnType::Boolean(None),
-            SnowflakeReturnType::Int8(Some(1)),
-            SnowflakeReturnType::Int32(Some(100000000)),
-            SnowflakeReturnType::String(Some("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx".to_string())),
-            SnowflakeReturnType::String(Some("er3fgre32gf3r".to_string())),
-            SnowflakeReturnType::Binary(Some(vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10])),
-
-        ];
-        return_vec.push(vec);
-    }
-
-    return return_vec.encode(env);
+    vec![vec![
+        SnowflakeReturnType::Float64(Some(32.0)),
+        SnowflakeReturnType::Boolean(Some(false)),
+        SnowflakeReturnType::Boolean(None),
+        SnowflakeReturnType::Int8(Some(1)),
+        SnowflakeReturnType::Int32(Some(100000000)),
+        SnowflakeReturnType::String(Some("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx".to_string())),
+        SnowflakeReturnType::String(Some("er3fgre32gf3r".to_string())),
+        SnowflakeReturnType::Binary(Some(vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10])),
+    ]; 100000].encode(env)
 }
 
 #[derive(Debug, Clone, NifUntaggedEnum)]

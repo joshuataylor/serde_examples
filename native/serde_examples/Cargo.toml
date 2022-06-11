@@ -11,6 +11,7 @@ crate-type = ["dylib"]
 
 [dependencies]
 rustler = "0.25.0"
+fastrand = "1.7.0"
 
 [profile.release]
 lto = true
