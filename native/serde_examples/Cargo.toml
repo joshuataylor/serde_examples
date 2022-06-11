@@ -1,0 +1,17 @@
+[package]
+name = "serde_examples"
+version = "0.1.0"
+edition = "2021"
+authors = ["Josh Taylor <joshuataylorx@gmail.com>"]
+
+[lib]
+name = "serde_examples"
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+rustler = "0.25.0"
+
+[profile.release]
+lto = true
+codegen-units = 1
